@@ -1,0 +1,39 @@
+Schema:
+User:
+username - string, unique
+password_digest - string
+session_token - string, unique
+
+Goals:
+progress - num < 100, > 0
+text - string
+user_id - integer
+deadline - date
+type - [intention, monthly, weekly, daily]
+
+Subgoals:
+goal_id - integer
+value - integer
+body - string
+checked - boolean
+
+Dependencies:
+subgoal_id - integer
+depends_on - integer
+
+Hour by hour:
+Hour 1, 2: User Auth backend
+Hour 3, 4: Setup React + frontend Auth
+Hour 5: Create the Goal model/view/controller in Rails
+Hour 6, 7: Create Fancy Goal Components in React (form for user input and goal creation, subgoal display (will have dummy text at first), progress bars (also dummy data), dropdowns (goal type), goal Index with subtrees for monthly/weekly/daily goals/subgoals)
+Hour 8: Subgoals in Rails
+Hour 9, 10, 11: Create components for subgoals and goals and integrate the two
+Hour 12, 13: Dependency join table to create subgoal nesting and cleaner goal interface (only display goals with met dependencies)
+Hour 14, 15: Frontend Encouragement Component which displays messages based on progress
+Hour 16 - 21: Styling 
+Hour 22 - 24 : Testing, deployment, finishing touches
+
+
+Stretch goals:
+Infer some common goals/subgoals/dependencies and recommend to users of the app
+
