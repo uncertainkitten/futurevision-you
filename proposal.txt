@@ -22,7 +22,7 @@ subgoal_id - integer
 depends_on - integer
 
 Hour by hour:
-Hour 1, 2: User Auth backend
+Hour 1, 2: User Auth backend - DONE
 Hour 3, 4: Setup React + frontend Auth
 Hour 5: Create the Goal model/view/controller in Rails
 Hour 6, 7: Create Fancy Goal Components in React (form for user input and goal creation, subgoal display (will have dummy text at first), progress bars (also dummy data), dropdowns (goal type), goal Index with subtrees for monthly/weekly/daily goals/subgoals)
