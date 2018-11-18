@@ -30,6 +30,7 @@ class GoalItem  extends React.Component {
         <div className="goal-progress">{this.props.goal.progress}</div>
         <p className="deadline">{this.props.goal.deadline}</p>
         <div className="completion">Completed? {`${this.props.goal.completed}`}</div>
+        <button className="deleteBtn" onClick={this.props.clearGoal}>Delete this Goal?</button>
         <ul className="subgoals">{subcomponent}</ul>
       </div>
     )
