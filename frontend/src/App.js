@@ -4,6 +4,7 @@ import SplashContainer from './components/session/splash_container';
 import LoginFormContainer from './components/session/login_form_container';
 import SignupFormContainer from './components/session/signup_form_container';
 import GoalIndexContainer from './components/goals/goal_index_container';
+import GoalItemContainer from './components/goals/goal_item_container';
 import {Route, Switch} from 'react-router-dom';
 import {AuthRoute, ProtectedRoute} from './util/routes';
 
@@ -14,7 +15,8 @@ class App extends Component {
         <h1>Welcome to FutureVision.You</h1>
         <Switch>
           <Route exact path="/" component={SplashContainer} />
-          <ProtectedRoute path="/goals" component={GoalIndexContainer}/>
+          <ProtectedRoute exact path="/goals" component={GoalIndexContainer}/>
+          <ProtectedRoute path="/goals/:id" component={GoalItemContainer}/>
           <AuthRoute path="/signup" component={SignupFormContainer}/>
           <AuthRoute path="/login" component={LoginFormContainer}/>
         </Switch>

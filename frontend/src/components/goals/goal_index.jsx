@@ -1,5 +1,5 @@
 import React from 'react';
-import GoalItem from './goal_item';
+import GoalIndexItem from './goal_index_item';
 
 class GoalIndex extends React.Component{
   constructor(props){
@@ -13,14 +13,14 @@ class GoalIndex extends React.Component{
   render(){
     let goals;
     if (this.props.goals.length){
-      goals = "No goals found"
-    } else {
       goals = this.props.goals.map(goal =>
-      <GoalItem
-      key={goal.id}
-      fetchGoal={this.props.fetchGoal}
-      goal={goal}
-      />);
+        <GoalIndexItem
+        key={goal.id}
+        fetchGoal={this.props.fetchGoal}
+        goal={goal}
+        />);
+    } else {
+      goals = "No goals found"
     }
     return(
       <div className="goal-index-container">

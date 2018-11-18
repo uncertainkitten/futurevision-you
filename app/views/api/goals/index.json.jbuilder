@@ -1,3 +1,5 @@
 @goals.each do |goal|
-  json.extract! goal, :id, :text, :deadline, :progress, :level
+  json.set! goal.id do
+    json.extract! goal, :id, :text, :deadline, :progress, :level
+  end
 end
