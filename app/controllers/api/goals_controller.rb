@@ -1,6 +1,6 @@
 class Api::GoalsController < ApplicationController
   before_action :require_login
-  before_action :protected_goal, :only [:create, :destroy]
+  before_action :protected_goal, only: [:create, :destroy]
 
   def index
     @user = current_user
@@ -9,11 +9,18 @@ class Api::GoalsController < ApplicationController
   end
 
   def show
-    @goal = Goal.find_by(:id, params[:id])
+    @goal = Goal.find_by(id: params[:id])
+
     if @goal
+      if @goal.level == "Future Vision"
+        @steps = @goal.goals
+      else
+        @future_vision = @goal.future_vision
+      end
       render :show
     else
       render json: ["Goal not found"], status: 404
+    end
   end
 
   def create
@@ -21,6 +28,11 @@ class Api::GoalsController < ApplicationController
     @goal.user_id = current_user.id
 
     if @goal.save
+      if @goal.level == "Future Vision"
+        @steps = @goal.goals
+      else
+        @future_vision = @goal.future_vision
+      end
       render :show
     else
       render json: @goal.errors.full_messages, status: 422
@@ -28,9 +40,14 @@ class Api::GoalsController < ApplicationController
   end
 
   def update
-    @goal = Goal.find_by(:id, params[:id])
+    @goal = Goal.find_by(id: params[:id])
 
     if @goal.update(goal_params)
+      if @goal.level == "Future Vision"
+        @steps = @goal.goals
+      else
+        @future_vision = @goal.future_vision
+      end
       render :show
     else
       render json: @goal.errors.full_message, status: 422
@@ -38,13 +55,13 @@ class Api::GoalsController < ApplicationController
   end
 
   def destroy
-    @goal = Goal.find_by(:id, params[:id])
+    @goal = Goal.find_by(id: params[:id])
     @goal.destroy
     render json: {}
   end
 
   private
   def goal_params
-    params.require(:goal).permit(:text, :deadline, :progress, :type)
+    params.require(:goal).permit(:text, :deadline, :progress, :level, :future_vision_id)
   end
 end

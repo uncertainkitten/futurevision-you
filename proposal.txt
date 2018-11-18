@@ -24,12 +24,11 @@ depends_on - integer
 Hour by hour:
 Hour 1, 2: User Auth backend - DONE
 Hour 3, 4: Setup React + frontend Auth - DONE
-By 2200: Create the Goal model/view/controller in Rails
-By 0000: Create Fancy Goal Components in React (form for user input and goal creation, subgoal display (will have dummy text at first), progress bars (also dummy data), dropdowns (goal type), goal Index with subtrees for monthly/weekly/daily goals/subgoals)
-By 0100: Subgoals in Rails
-By 0400: Create components for subgoals and goals and integrate the two
-By 0600: Dependency join table to create subgoal nesting and cleaner goal interface (only display goals with met dependencies)
-By 1000: Styling 
+By 2200: Create the Goal model/view/controller in Rails - DONE
+By 0330: Create Fancy Goal Components in React (form for user input and goal creation, subgoal display (will have dummy text at first), progress bars (also dummy data), dropdowns (goal type), goal Index with subtrees for monthly/weekly/daily goals/subgoals)
+By 0500: Subgoals in Rails
+By 0730: Create components for subgoals and goals and integrate the two
+By 1000: Maybe styling
 By 1115: Testing, deployment, finishing touches
 
 
