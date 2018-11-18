@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
 
+  def target_goal
+    @target_goal ||= Goal.find_by(id: params[:id])
+  end
+
   def login!(user)
     session[:session_token] = user.reset_session_token!
     current_user
@@ -37,6 +41,19 @@ class ApplicationController < ActionController::Base
   def protected
     current_user
     unless logged_in? && @current_user.id.to_s == params[:id]
+      render json: ["You can't do that"], status: 403
+    end
+  end
+
+  def protected_goal
+    current_user
+    target_goal
+
+    if !target_goal
+      render json: ["Goal not found"], status: 404 and return
+    end
+
+    unless target_goal && logged_in && (@current_user == @target_goal.user)
       render json: ["You can't do that"], status: 403
     end
   end
