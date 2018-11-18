@@ -5,6 +5,16 @@ import {Link} from 'react-router-dom';
 class Splash extends React.Component {
   constructor(props){
     super(props)
+    this.handleLogout = this.handleLogout.bind(this);
+  }
+
+  handleLogout(){
+    localStorage.clear();
+    this.props.logout();
+  }
+
+  componentDidMount(){
+    localStorage.setItem("currentUser", JSON.stringify(this.props.currentUser))
   }
 
   render() {
@@ -12,7 +22,7 @@ class Splash extends React.Component {
     let session = "";
     if (this.props.loggedIn){
       greeting = `Welcome to FutureVision.${this.props.currentUser.username}`
-      session = <button className="logoutBtn" onClick={this.props.logout}>Logout</button>
+      session = <button className="logoutBtn" onClick={this.handleLogout}>Logout</button>
     } else {
       greeting = `Welcome to FutureVision.You`
       session = <div className="authBtns">

@@ -3,36 +3,39 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Root from './Root';
 import * as serviceWorker from './serviceWorker';
-import configureStore from './store/store';
+import {configureStore} from './store/store';
 import {getUser} from './util/user_api_util';
 import {signup, login, logout} from './actions/session_actions';
+
 
 document.addEventListener("DOMContentLoaded", () => {
   const root = document.getElementById('root');
   let store;
 
-  if (window.CurrentUser) {
+  if (localStorage.getItem("currentUser") && localStorage.getItem("currentUser") !== "undefined") {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     const preloadedState = {
       entities: {
-        users: { [window.currentUser.id]: window.currentUser }
+        users: { [currentUser.id]: currentUser }
         },
-        session: {id: window.currentUser.id}
+        session: { id: currentUser.id }
       };
       store = configureStore(preloadedState);
-      delete window.currentUser;
-    } else {
-      store = configureStore();
-    }
+  } else {
+    store = configureStore();
+  }
 
-    //Tests
-    window.getUser = getUser;
-    window.signup = signup;
-    window.login = login;
-    window.logout = logout;
-    window.getState = store.getState;
-    window.dispatch = store.dispatch;
-    //end tests
-    ReactDOM.render(<Root store={store} />, root);
+
+
+  //Tests
+  window.getUser = getUser;
+  window.signup = signup;
+  window.login = login;
+  window.logout = logout;
+  window.getState = store.getState;
+  window.dispatch = store.dispatch;
+  //end tests
+  ReactDOM.render(<Root store={store} />, root);
   }
 );
 
