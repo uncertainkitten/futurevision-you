@@ -20,18 +20,18 @@ export const logoutCurrentUser = () => ({
 
 export const signup = (user) => dispatch => {
   return SessionAPI.postUser(user)
-    .then(user => dispatch(receiveCurrentUser(user)))
-    .fail(err => dispatch(receiveSessionErrors(err.responseJSON)));
+    .then(user => dispatch(receiveCurrentUser(user.data)))
+    .catch(err => dispatch(receiveSessionErrors(err.response.data)));
 };
 
 export const login = (user) => dispatch => {
   return SessionAPI.postSession(user)
-    .then(user => dispatch(receiveCurrentUser(user)))
-    .fail(err => dispatch(receiveSessionErrors(err.responseJSON)));
+    .then(user => dispatch(receiveCurrentUser(user.data)))
+    .catch(err => dispatch(receiveSessionErrors(err.response.data)));
 };
 
 export const logout = () => dispatch => {
   return SessionAPI.deleteSession()
     .then(() => dispatch(logoutCurrentUser()))
-    .fail(err => dispatch(receiveSessionErrors(err.responseJSON)));
+    .catch(err => dispatch(receiveSessionErrors(err.response.data)));
 };

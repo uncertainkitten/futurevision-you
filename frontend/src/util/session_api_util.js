@@ -3,7 +3,7 @@ import axios from 'axios';
 export const postUser = (user) => {
   return axios({
     method: "POST",
-    url: 'api/users',
+    url: '/api/users',
     data: {user}
   })
 };
@@ -11,7 +11,7 @@ export const postUser = (user) => {
 export const postSession = (user) => {
   return axios({
     method: "POST",
-    url: 'api/session',
+    url: '/api/session',
     data: {user}
   })
 };
@@ -19,6 +19,6 @@ export const postSession = (user) => {
 export const deleteSession = () => {
   return axios({
     method: "DELETE",
-    url: 'api/session'
+    url: '/api/session'
   })
 };
