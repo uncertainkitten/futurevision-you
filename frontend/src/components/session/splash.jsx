@@ -35,6 +35,7 @@ class Splash extends React.Component {
       <div className="splashContainer">
         <h3 className="greeting">{greeting}</h3>
         {session}
+        <Link to="/goals">FutureVision.Goals</Link>
       </div>
     );
   }
