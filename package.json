@@ -1,0 +1,32 @@
+{
+  "name": "future_vision-you",
+  "engines": {
+    "node": "10.13.0"
+  },
+  "version": "0.1.0",
+  "description": "An app to help you become your vision of your future self",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "dependencies": {
+    "create-react-app": "^2.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "build": "cd frontend && npm install && npm run build && cd ..",
+    "deploy": "cp -a frontend/build/. public/",
+    "postinstall": "npm run build && npm run deploy && echo 'Frontend built!'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uncertainkitten/futurevision-you.git"
+  },
+  "author": "Cassandra McClure",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/uncertainkitten/futurevision-you/issues"
+  },
+  "homepage": "https://github.com/uncertainkitten/futurevision-you#readme"
+}
