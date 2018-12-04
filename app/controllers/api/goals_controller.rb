@@ -1,6 +1,6 @@
 class Api::GoalsController < ApplicationController
   before_action :require_login
-  before_action :protected_goal, only: [:create, :destroy]
+  before_action :protected_goal, only: [:update, :destroy]
 
   def index
     @user = current_user
@@ -26,6 +26,7 @@ class Api::GoalsController < ApplicationController
   def create
     @goal = Goal.new(goal_params)
     @goal.user_id = current_user.id
+    @goal.completed = false
 
     if @goal.save
       if @goal.level == "Future Vision"
@@ -42,7 +43,7 @@ class Api::GoalsController < ApplicationController
   def update
     @goal = Goal.find_by(id: params[:id])
 
-    if @goal.update(goal_params)
+    if @goal.update_attributes(goal_params)
       if @goal.level == "Future Vision"
         @steps = @goal.goals
       else
@@ -50,7 +51,7 @@ class Api::GoalsController < ApplicationController
       end
       render :show
     else
-      render json: @goal.errors.full_message, status: 422
+      render json: @goal.errors.full_messages, status: 422
     end
   end
 

@@ -53,7 +53,7 @@ class ApplicationController < ActionController::Base
       render json: ["Goal not found"], status: 404 and return
     end
 
-    unless target_goal && logged_in && (@current_user == @target_goal.user)
+    unless target_goal && logged_in? && (@current_user == @target_goal.user)
       render json: ["You can't do that"], status: 403
     end
   end

@@ -34,7 +34,7 @@ class GoalIndex extends React.Component{
 
     let form = "";
     if (this.state.formToggle){
-      form = <NewGoalContainer />
+      form = <NewGoalContainer toggleNewForm={this.handleClick}/>
     }
 
     return(

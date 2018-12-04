@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import GoalItem from './goal_item';
-import {fetchGoal, clearGoal} from '../../actions/goals_actions';
+import {fetchGoal, clearGoal, changeGoal, fetchGoals} from '../../actions/goals_actions';
 
 const mapStateToProps = (state, ownProps) => ({
   goalId: ownProps.match.params.id,
@@ -8,8 +8,10 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  fetchGoals: () => dispatch(fetchGoals()),
   fetchGoal: (goalId) => dispatch(fetchGoal(goalId)),
-  clearGoal: (goalId) => dispatch(clearGoal(goalId))
+  clearGoal: (goalId) => dispatch(clearGoal(goalId)),
+  changeGoal: (goal) => dispatch(changeGoal(goal))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(GoalItem);
