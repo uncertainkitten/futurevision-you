@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_18_111001) do
+ActiveRecord::Schema.define(version: 2018_12_12_055054) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,16 @@ ActiveRecord::Schema.define(version: 2018_11_18_111001) do
     t.integer "future_vision_id"
     t.index ["future_vision_id"], name: "index_goals_on_future_vision_id"
     t.index ["user_id"], name: "index_goals_on_user_id"
+  end
+
+  create_table "subgoals", force: :cascade do |t|
+    t.integer "goal_id", null: false
+    t.integer "value", null: false
+    t.boolean "checked"
+    t.string "body", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["goal_id"], name: "index_subgoals_on_goal_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,24 +1,17 @@
 import React from 'react';
 import GoalIndexItem from './goal_index_item';
-import EditGoalContainer from './edit_goal_container';
 import {withRouter, Link} from 'react-router-dom';
 
 class GoalItem  extends React.Component {
   constructor(props){
     super(props);
     this.state = {isLoading: true, editing: false}
-    this.handleEdit = this.handleEdit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount(){
     this.props.fetchGoals()
-    .then(res => this.props.fetchGoal(this.props.goalId)
-    .then(res => this.setState({isLoading: false})));
-  }
-
-  handleEdit(){
-    this.setState({editing: !this.state.editing})
+    .then(res => this.setState({isLoading: false}));
   }
 
   handleDelete(){
@@ -47,11 +40,6 @@ class GoalItem  extends React.Component {
         subcomponent = <GoalIndexItem key={future.id} goal={future} fetchGoal={this.props.fetchGoal}/>
       }
 
-      let editForm;
-      if(this.state.editing){
-        editForm = <EditGoalContainer goalId={this.props.goalId} toggleEdit={this.handleEdit}/>
-      }
-
       return(
         <div className="goal-item">
           <h3>{this.props.goal.level}</h3>
@@ -61,11 +49,9 @@ class GoalItem  extends React.Component {
           <div className="completion">Completed? {`${this.props.goal.completed}`}</div>
           <div className="buttonGoalDiv">
             <button className="deleteBtn" onClick={this.handleDelete}>Delete this Goal</button>
-            <button className="deleteBtn" onClick={this.handleEdit}>Edit this Goal</button>
           </div>
           <ul className="subgoals">{subcomponent}</ul>
           <Link to="/goals">Back to Index</Link>
-          {editForm}
         </div>
       )
     }

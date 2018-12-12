@@ -35,4 +35,9 @@ class Goal < ApplicationRecord
   foreign_key: :future_vision_id,
   class_name: :Goal,
   dependent: :destroy
+
+  has_many :subgoals,
+  primary_key: :id,
+  foreign_key: :goal_id,
+  class_name: :Subgoal
 end

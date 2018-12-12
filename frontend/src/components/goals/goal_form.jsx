@@ -20,18 +20,17 @@ class GoalForm extends React.Component{
   }
 
   componentDidMount(){
-    if (this.props.formType === "Edit Goal"){
-      this.props.fetchGoal(this.props.goalId);
-      this.setState({
-        deadline: this.props.goal.deadline,
-        text: this.props.goal.text,
-        level: this.props.goal.level,
-        progress: this.props.goal.progress,
-      });
-      if (this.props.goal.future_vision.id){
-        this.setState({future_vision_id: this.props.goal.future_vision.id});
-      }
-    }
+    // if (this.props.formType === "Edit Goal"){
+    //   this.props.fetchGoal(this.props.goalId);
+    //   this.setState({
+    //     deadline: this.props.goal.deadline,
+    //     text: this.props.goal.text,
+    //     level: this.props.goal.level,
+    //     progress: this.props.goal.progress,
+    //   });
+    // if (this.props.goal.future_vision){
+    //   this.setState({future_vision_id: this.props.goal.future_vision.id});
+    // }
   }
 
   update(field){

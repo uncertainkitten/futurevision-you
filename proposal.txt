@@ -54,3 +54,8 @@ Daily Goal
 -subgoal7
 -subgoal8
 -subgoal9
+
+As of 12/11/2018:
+Fix query issues in Goals
+Calendar should only be settable on Future Visions
+
