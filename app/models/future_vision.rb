@@ -1,0 +1,2 @@
+class FutureVision < ApplicationRecord
+end
